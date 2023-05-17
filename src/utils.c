@@ -6,13 +6,33 @@
 /*   By: ialousse <ialousse@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 18:25:33 by ialousse          #+#    #+#             */
-/*   Updated: 2023/05/17 17:46:28 by ialousse         ###   ########.fr       */
+/*   Updated: 2023/05/17 19:17:03 by ialousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-void	get_path(char **cmd, char **env)
+char	get_env(char *name, char **env)
+{
+	int		i;
+	int		j;
+	char	*sub;
+
+	i = 0;
+	while (env[i])
+	{
+		j = 0;
+		while (env[i][j] && env[i][j] != '=')
+			j++;
+		sub = ft_substr(env, 0, j);
+		if(ft_strncmp(name, env) == 0)
+		{
+			free (sub)
+		}
+	}
+}
+
+char	get_path(char **cmd, char **env)
 {
 	int		i;
 	char	*save_cmd;
