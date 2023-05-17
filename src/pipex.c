@@ -6,7 +6,7 @@
 /*   By: ialousse <ialousse@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 17:17:39 by ialousse          #+#    #+#             */
-/*   Updated: 2023/05/11 22:32:39 by ialousse         ###   ########.fr       */
+/*   Updated: 2023/05/17 18:15:11 by ialousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,15 @@ int	main(int ac, char **av, char **env)
 	pid_t	pid;
 
 	if (ac != 5)
-		error();
-	if (pipe(fd) == -1)
+		ft_exit(1);
+	if (pipe(fd) == -1) //vérifie si la création du tube a échoué
 		exit(-1);
 	pid = fork();
-	if (pid == -1)
+	if (pid == -1) //vérifie si la création du processus fils a échoué.
 		exit(-1);
-	if (!pid)
+	if (pid == 0)     // vérifie si le processus est le processus enfant
 		enfant(av, fd, env);
+		
 	parant(av, fd, env);
 }
 

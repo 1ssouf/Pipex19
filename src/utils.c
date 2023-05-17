@@ -6,11 +6,48 @@
 /*   By: ialousse <ialousse@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 18:25:33 by ialousse          #+#    #+#             */
-/*   Updated: 2023/05/11 22:26:14 by ialousse         ###   ########.fr       */
+/*   Updated: 2023/05/17 17:46:28 by ialousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
+
+void	get_path(char **cmd, char **env)
+{
+	int		i;
+	char	*save_cmd;
+	char	**all_path;
+	char	*path_part;
+	char	*exec;
+
+	i = 0;
+	all_path = ft_split(my_get_env("PATH", env), ':');
+	save_cmd = ft_split(cmd, ' ');
+	while (all_path[i++])
+	{
+		path_part = ft_strjoin(all_path[i], '/');
+		exec = ft_strjoin(path_part, save_cmd[0]);
+		free(path_part);
+		if (access(exec, F_OK | X_OK) == 0)
+		{
+			ft_free_tab(save_cmd);
+			return (exec);
+		}
+		free(exec);
+	}
+	free(all_path);
+	free(save_cmd);
+	return (cmd);
+}
+
+void	ft_exit(int n)
+{
+	if (n == 1)
+	{
+		ft_putstr_fd(2, "./pipex infile cmd1 cmd2 outfil\n", 1);
+		exit(0);
+	}
+}
 
 void	ft_free_tab(char **tab)
 {
