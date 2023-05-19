@@ -6,7 +6,7 @@
 /*   By: ialousse <ialousse@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 17:17:39 by ialousse          #+#    #+#             */
-/*   Updated: 2023/05/17 18:15:11 by ialousse         ###   ########.fr       */
+/*   Updated: 2023/05/19 12:36:41 by ialousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,130 +55,36 @@ void	parant(char **av, int pfd[2], char **env)
 	exec(av[3], env);
 }
 
+/*
+vérifie si il y a le bon nbr d'arg
+vérifie si la création du tube a échoué
+vérifie si la création du processus fils a échoué.
+vérifie si le processus est le processus enfant
+*/
+
 int	main(int ac, char **av, char **env)
 {
 	int		fd[2];
 	pid_t	pid;
+	int		i;
 
-	if (ac != 5)
+	if (ac != 5 || (av[2][0] == '\0' || av[3][0] == '\0'))
 		ft_exit(1);
-	if (pipe(fd) == -1) //vérifie si la création du tube a échoué
-		exit(-1);
-	pid = fork();
-	if (pid == -1) //vérifie si la création du processus fils a échoué.
-		exit(-1);
-	if (pid == 0)     // vérifie si le processus est le processus enfant
-		enfant(av, fd, env);
-		
-	parant(av, fd, env);
+	i = 0;
+	while ((av[2][i] && av[2][i] == ' ') || (av[3][i] && av[3][i] == ' '))
+		i++;
+	if ((av[2][i] && av[2][i] != ' ') && (av[3][i] && av[3][i] != ' '))
+	{
+		if (pipe(fd) == -1)
+			exit(-1);
+		pid = fork();
+		if (pid == -1)
+			exit(-1);
+		if (!pid)
+			enfant(av, fd, env);
+		parant(av, fd, env);
+		i++;
+	}
+	else
+		ft_exit(0);
 }
-
-// // #include <unistd.h>
-// // #include <stdio.h>
-// // #include <fcntl.h>
-
-// // int main()
-// // {
-// // 	open("example.txt", O_WRONLY | O_CREAT, 0644);
-// // 	if (access("example.txt", R_OK) != -1)
-// // 		printf("I have permission\n");
-// // 	else
-// // 		printf("I don't have permission\n");
-
-// // 	return (0);
-// // }
-
-// #include <stdio.h>
-// #include <stdlib.h>
-// #include <unistd.h>
- 
-// // int main()
-// // {
-// // 	int fd[2];
-// // 	pid_t pid;
-// // 	char buffer[13];
- 
-// // 	if (pipe(fd) == -1)
-// // 	{
-// // 		perror("pipe");
-// // 		exit(EXIT_FAILURE);
-// // 	}
- 
-// // 	pid = fork();
-// // 	if (pid == -1)
-// // 	{
-// // 		perror("fork");
-// // 		exit(EXIT_FAILURE);
-// // 	}
- 
-// // 	if (pid == 0)
-// // 	{
-// // 		close(fd[0]); // close the read end of the pipe
-// // 		write(fd[1], "Hello parent!", 13);
-// // 		close(fd[1]); // close the write end of the pipe
-// // 		printf("--- %d\n", pid);
-// // 		exit(EXIT_SUCCESS);
-// // 	}
-// // 	else
-// // 	{
-// // 		close(fd[1]); // close the write end of the pipe
-// // 		read(fd[0], buffer, 13);
-// // 		close(fd[0]); // close the read end of the pipe
-// // 		printf("Message from child: '%s' --- %d\n", buffer, pid);
-// // 		exit(EXIT_SUCCESS);
-// // 	}
-// // }
-
-// // int main()
-// // {
-// // 	if (unlink("example.txt") == 0)
-// // 		printf("File successfully deleted");
-// // 	else
-// // 		printf("Error deleting file");
- 
-// // 	return (0);
-// // }
-
-
-// // #include <stdio.h>
-// // #include <stdlib.h>
-// // #include <unistd.h>
-// // #include <sys/wait.h>
- 
-// // int main(int argc, char *argv[])
-// // {
-// // 	pid_t pid;
- 
-// // 	pid = fork();
-// // 	if (pid == -1)
-// // 	{
-// // 		perror("fork");
-// // 		exit(EXIT_FAILURE);
-// // 	}
-// // 	else if (pid == 0)
-// // 	{
-// // 		printf("I am the child process.\n");
-// // 		sleep(2);
-// // 		exit(EXIT_SUCCESS);
-// // 	}
-// // 	else
-// // 	{
-// // 		printf("I am the parent process.\n");
-// // 		wait(NULL);
-// // 		printf("Child process terminated after a 2s delay.\n");
-// // 	}
- 
-// // 	return (EXIT_SUCCESS);
-// // }
-
-
-// int	main()
-// {
-// 	ft_init_pipex()
-// 	ft_check_args()
-// 	ft_parse_cmds()
-// 	ft_parse_args()
-// 	while (cmds)
-// 		ft_exec()
-// 	ft_cleanup()
-// }

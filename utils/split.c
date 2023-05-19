@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialousse <ialousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialousse <ialousse@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/29 20:48:52 by ialousse          #+#    #+#             */
-/*   Updated: 2022/07/29 20:53:02 by ialousse         ###   ########.fr       */
+/*   Created: 2023/05/19 10:51:46 by ialousse          #+#    #+#             */
+/*   Updated: 2023/05/19 10:56:29 by ialousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/pipex.h"
 
 static size_t	check_str(char const *s, char c)
 {

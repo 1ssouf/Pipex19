@@ -6,13 +6,13 @@
 /*   By: ialousse <ialousse@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 18:25:33 by ialousse          #+#    #+#             */
-/*   Updated: 2023/05/17 19:17:03 by ialousse         ###   ########.fr       */
+/*   Updated: 2023/05/19 12:36:31 by ialousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-char	get_env(char *name, char **env)
+char	*get_env(char *name, char **env)
 {
 	int		i;
 	int		j;
@@ -24,28 +24,32 @@ char	get_env(char *name, char **env)
 		j = 0;
 		while (env[i][j] && env[i][j] != '=')
 			j++;
-		sub = ft_substr(env, 0, j);
-		if(ft_strncmp(name, env) == 0)
+		sub = ft_substr(env[i], 0, j);
+		if (ft_strcmp(sub, name) == 0)
 		{
-			free (sub)
+			free (sub);
+			return (env[i] + j + 1);
 		}
+		free(sub);
+		i++;
 	}
+	return (NULL);
 }
 
-char	get_path(char **cmd, char **env)
+char	*get_path(char *cmd, char **env)
 {
 	int		i;
-	char	*save_cmd;
+	char	**save_cmd;
 	char	**all_path;
 	char	*path_part;
 	char	*exec;
 
 	i = 0;
-	all_path = ft_split(my_get_env("PATH", env), ':');
+	all_path = ft_split(get_env("PATH", env), ':');
 	save_cmd = ft_split(cmd, ' ');
 	while (all_path[i++])
 	{
-		path_part = ft_strjoin(all_path[i], '/');
+		path_part = ft_strjoin(all_path[i], "/");
 		exec = ft_strjoin(path_part, save_cmd[0]);
 		free(path_part);
 		if (access(exec, F_OK | X_OK) == 0)
@@ -64,7 +68,12 @@ void	ft_exit(int n)
 {
 	if (n == 1)
 	{
-		ft_putstr_fd(2, "./pipex infile cmd1 cmd2 outfil\n", 1);
+		ft_putstr_fd("./pipex infile cmd1 cmd2 outfil\n", 2);
+		exit(0);
+	}
+	if (n == 0)
+	{
+		ft_putstr_fd("ERROR\n", 2);
 		exit(0);
 	}
 }
