@@ -1,0 +1,12 @@
+total 128
+drwxr-xr-x  11 ialousse  2022_brussels    374 24 May 14:53 .
+drwxr-xr-x  29 ialousse  2022_brussels    986 19 May 13:52 ..
+drwxr-xr-x  12 ialousse  2022_brussels    408 19 May 13:30 .git
+-rw-r--r--   1 ialousse  2022_brussels    542 19 May 11:19 Makefile
+-rw-r--r--   1 ialousse  2022_brussels   2193 11 May 23:05 README.md
+-rw-r--r--   1 ialousse  2022_brussels     16 24 May 14:53 f1
+-rw-r--r--   1 ialousse  2022_brussels      0 24 May 14:53 f2
+drwxr-xr-x   3 ialousse  2022_brussels    102 11 May 21:27 include
+-rwxr-xr-x   1 ialousse  2022_brussels  52576 19 May 13:43 pipex
+drwxr-xr-x   4 ialousse  2022_brussels    136 11 May 21:30 src
+drwxr-xr-x   5 ialousse  2022_brussels    170 19 May 11:09 utils
