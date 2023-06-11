@@ -6,7 +6,7 @@
 /*   By: ialousse <ialousse@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 16:03:27 by ialousse          #+#    #+#             */
-/*   Updated: 2023/05/24 17:12:52 by ialousse         ###   ########.fr       */
+/*   Updated: 2023/06/11 20:06:20 by ialousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <fcntl.h>
+# include <sys/wait.h>
+# include "get_next_line.h"
 
 /*lib_utils*/
 void	ft_putstr_fd(char *s, int fd);

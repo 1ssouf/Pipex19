@@ -6,11 +6,11 @@
 /*   By: ialousse <ialousse@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 18:25:33 by ialousse          #+#    #+#             */
-/*   Updated: 2023/05/19 12:36:31 by ialousse         ###   ########.fr       */
+/*   Updated: 2023/06/11 22:23:18 by ialousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "pipex.h"
 
 char	*get_env(char *name, char **env)
 {

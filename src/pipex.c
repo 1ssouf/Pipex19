@@ -6,11 +6,11 @@
 /*   By: ialousse <ialousse@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 17:17:39 by ialousse          #+#    #+#             */
-/*   Updated: 2023/05/19 13:51:43 by ialousse         ###   ########.fr       */
+/*   Updated: 2023/06/11 22:23:08 by ialousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "pipex.h"
 
 void	exec(char *cmd, char **env)
 {
