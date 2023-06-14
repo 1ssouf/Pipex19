@@ -1,9 +1,7 @@
 # Pipex
 Pipex est un projet de qui consiste à recréer le fonctionnement de l'opérateur de redirection de shell | en utilisant des pipes en C. Le programme Pipex prend en entrée un fichier source, exécute deux commandes et redirige la sortie de la première commande vers l'entrée de la seconde commande, en imitant le comportement de la commande shell
 
-    ```
     command1 | command2.
-    ```
 
 ## Compilation
 Pour compiler le projet Pipex, vous devez exécuter la commande suivante :
