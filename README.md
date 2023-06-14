@@ -19,20 +19,29 @@ où :
 
 ## Exemple
 Voici un exemple d'utilisation du programme Pipex :
-    ```./pipex infile "ls -l" "grep pipex" outfile```
+    
+    ./pipex infile "ls -l" "grep pipex" outfile
+    
 Ce commandera exécutera la commande ```ls -l``` sur le contenu du fichier infile, puis filtrera la sortie en utilisant la commande grep pipex, et enfin écrira le résultat final dans le fichier outfile.
 
 ## Bonus
 Le projet Pipex offre également la possibilité de mettre en œuvre certains bonus supplémentaires. Voici une liste des bonus implémentés dans ce projet :
 
 1. ***Gestion de multiples pipes*** : Le programme Pipex peut gérer plusieurs opérations de redirection en utilisant plusieurs pipes. Par exemple :
-    ```./pipex infile "ls -l" "grep pipex" "sort -r" outfile```
+    
+    ./pipex infile "ls -l" "grep pipex" "sort -r" outfile
+    
 2. ***Gestion de l'opérateur de redirection*** ```<``` : Le programme Pipex peut prendre en charge l'opérateur de redirection < pour lire le contenu d'un fichier en entrée. Par exemple :
-    ```./pipex infile "< input.txt" "grep pipex" outfile```
+    
+    ./pipex infile "< input.txt" "grep pipex" outfile
+    
 2. ***Gestion de l'opérateur de redirection*** ```>``` : Le programme Pipex peut prendre en charge l'opérateur de redirection > pour écrire le résultat final dans un fichier de sortie. Par exemple :
-    ```./pipex infile "ls -l" "grep pipex" "> output.txt"```
+    
+    ./pipex infile "ls -l" "grep pipex" "> output.txt"
+    
 4. ***Gestion de l'opérateur de redirection*** ```>>``` : Le programme Pipex peut prendre en charge l'opérateur de redirection >> pour ajouter le résultat final à un fichier de sortie existant. Par exemple :
-    ```./pipex infile "ls -l" "grep pipex" ">> output.txt"```
+    
+    ./pipex infile "ls -l" "grep pipex" ">> output.txt"
 
 ## Remarques
 Assurez-vous que les commandes que vous utilisez sont correctement formatées et qu'elles sont accessibles depuis le répertoire où vous exécutez le programme Pipex.
