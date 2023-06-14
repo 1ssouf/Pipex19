@@ -6,12 +6,27 @@
 /*   By: ialousse <ialousse@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:57:50 by ialousse          #+#    #+#             */
-/*   Updated: 2023/06/11 22:31:46 by ialousse         ###   ########.fr       */
+/*   Updated: 2023/06/14 20:33:13 by ialousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
-#include "../src/pipex.h"
+#include "pipexbonus.h"
+
+void	exec(char *cmd, char **env)
+{
+	char	**s_cmd;
+	char	*path;
+
+	s_cmd = ft_split(cmd, ' ');
+	path = get_path(s_cmd[0], env);
+	if (execve(path, s_cmd, env) == -1)
+	{
+		ft_putstr_fd("pipex: command not found: ", 2);
+		ft_putendl_fd(s_cmd[0], 2);
+		ft_free_tab(s_cmd);
+		exit(0);
+	}
+}
 
 void	her_doc(char **av)
 {
@@ -27,9 +42,9 @@ void	her_doc(char **av)
 		put_in_her_docs(av, p_fd);
 	else
 	{
-		close(pid);
-		dup2(p_fd, 0);
-		wait(0);
+		close(p_fd[1]);
+		dup2(p_fd[0], 0);
+		wait(NULL);
 	}
 }
 
@@ -51,6 +66,28 @@ void	put_in_her_docs(char **av, int *p_fd)
 	}
 }
 
+void	do_pipe(char *cmd, char **env)
+{
+	pid_t	pid;
+	int		p_fd[2];
+
+	if (pipe(p_fd) == -1)
+		exit(0);
+	pid = fork();
+	if (pid == -1)
+		exit(0);
+	if (!pid)
+	{
+		close(p_fd[0]);
+		dup2(p_fd[1], 1);
+		exec(cmd, env);
+	}
+	else
+	{
+		close(p_fd[1]);
+		dup2(p_fd[0], 0);
+	}
+}
 
 int	main(int ac, char **av, char **env)
 {
@@ -59,11 +96,11 @@ int	main(int ac, char **av, char **env)
 	int	fd_out;
 
 	if (ac < 5)
-		ft_exit(1);
-	if (ft_strcmp(av[1], "her_doc" == 0))
+		ft_exit(0);
+	if (ft_strcmp(av[1], "her_doc") == 0)
 	{
 		if (ac < 6)
-			ft_exit(1);
+			ft_exit(0);
 		i = 3;
 		fd_out = open_file(av[ac - 1], 2);
 		her_doc(av);
@@ -76,7 +113,7 @@ int	main(int ac, char **av, char **env)
 		dup2(fd_in, 0);
 	}
 	while (i < ac - 2)
-		do_pipe();
-	dup2(fd_out, 2);
+		do_pipe(av[i++], env);
+	dup2(fd_out, 1);
 	exec(av[ac - 2], env);
 }

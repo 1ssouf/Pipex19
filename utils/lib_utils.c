@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   lib_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialousse <ialousse@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:49:42 by ialousse          #+#    #+#             */
-/*   Updated: 2023/05/19 10:54:58 by ialousse         ###   ########.fr       */
+/*   Updated: 2023/06/12 18:10:55 by ialousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "utils.h"
 
 void	ft_putendl_fd(char *s, int fd)
 {
@@ -38,27 +38,23 @@ void	ft_putstr_fd(char *s, int fd)
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*str;
-	size_t	i;
-	size_t	j;
+	char	*temp;
+	size_t	len_s1;
+	size_t	len_s2;
 
 	if (!s1 || !s2)
 		return (NULL);
-	str = malloc(sizeof(char) * ft_strlen(s1) + ft_strlen(s2) + 1);
+	len_s1 = ft_strlen(s1);
+	len_s2 = ft_strlen(s2);
+	str = (char *)malloc(sizeof(char) * (len_s1 + len_s2 + 1));
 	if (!str)
 		return (NULL);
-	i = 0;
-	while (s1[i])
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	j = 0;
-	while (s2[j])
-	{
-		str[i + j] = s2[j];
-		j++;
-	}
-	str[i + j] = '\0';
+	temp = str;
+	while (*s1)
+		*temp++ = *s1++;
+	while (*s2)
+		*temp++ = *s2++;
+	*temp = '\0';
 	return (str);
 }
 

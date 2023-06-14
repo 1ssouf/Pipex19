@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_bonus.h                                      :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialousse <ialousse@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 16:03:27 by ialousse          #+#    #+#             */
-/*   Updated: 2023/06/11 20:06:20 by ialousse         ###   ########.fr       */
+/*   Created: 2023/06/11 20:00:31 by ialousse          #+#    #+#             */
+/*   Updated: 2023/06/12 16:59:25 by ialousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_BONUS_H
-# define PIPEX_BONUS_H
+#include "utils.h"
 
-# include <unistd.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include <sys/wait.h>
-# include "get_next_line.h"
+int	search_newline(char *s)
+{
+	int	i;
 
-/*lib_utils*/
-void	ft_putstr_fd(char *s, int fd);
-int		ft_strcmp(char *s1, char *s2);
-
-/*pipex_bonus_utils*/
-void	ft_exit(int n);
-int		open_file(char *file, int in_or_out);
-
-#endif
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i])
+	{
+		if (s[i] == '\n')
+			return (1);
+		i++;
+	}
+	return (0);
+}

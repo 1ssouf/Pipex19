@@ -6,11 +6,11 @@
 /*   By: ialousse <ialousse@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:51:46 by ialousse          #+#    #+#             */
-/*   Updated: 2023/05/19 10:56:29 by ialousse         ###   ########.fr       */
+/*   Updated: 2023/06/12 16:59:51 by ialousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "utils.h"
 
 static size_t	check_str(char const *s, char c)
 {

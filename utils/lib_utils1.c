@@ -6,22 +6,23 @@
 /*   By: ialousse <ialousse@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 11:09:19 by ialousse          #+#    #+#             */
-/*   Updated: 2023/06/11 22:17:51 by ialousse         ###   ########.fr       */
+/*   Updated: 2023/06/12 16:59:43 by ialousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "utils.h"
 
-int	ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
-	int	c;
+	size_t	i;
 
-	c = 0;
-	while (s[c])
-	{
-		c++;
-	}
-	return (c);
+	i = 0;
+	if (!s)
+		return (0);
+	else
+		while (s[i])
+			i++;
+	return (i);
 }
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)

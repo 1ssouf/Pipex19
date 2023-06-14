@@ -1,30 +1,36 @@
-# Variables
-CC = gcc
-CFLAGS = -Werror -Wall -Wextra -fsanitize=address
-LDFLAGS =
-
-# Chemins des fichiers sources
-SRCDIR = src
-UTILSDIR = utils
-INCDIR = include
-
-# Noms des fichiers sources
-SRCS = $(SRCDIR)/pipex.c $(SRCDIR)/utils.c $(UTILSDIR)/lib_utils.c $(UTILSDIR)/lib_utils1.c $(UTILSDIR)/split.c
-
-# Nom de l'exécutable
 NAME = pipex
 
-# Commandes
-all: $(NAME)
+CC = gcc
 
-$(NAME): $(SRCS) $(INCDIR)/pipex.h
-	$(CC) $(CFLAGS) $(LDFLAGS) -I$(INCDIR) $(SRCS) -o $(NAME)
+CFLAGS = -Werror -Wall -Wextra -fsanitize=address
 
-clean:
-	rm -f $(NAME)
+RM = rm -rf
 
-fclean: clean
+SRCS = 	src/pipex.c\
+		src/utils.c\
+		utils/utils.a\
 
-re: fclean all
+SRCS_BONUS = 	src_bonus/pipex_bonus.c\
+				src_bonus/utils_bonus.c\
+				utils/utils.a\
 
-.PHONY: all clean fclean re
+$(NAME) :
+	make all -C utils
+	gcc $(CFLAGS) $(SRCS) -o $(NAME)
+
+
+all : $(NAME)
+
+fclean : clean
+	$(RM) $(NAME)
+	make fclean -C utils
+
+clean :
+	$(RM) $(NAME)
+	make clean -C utils
+
+re : fclean all
+
+bonus : clean
+	make all -C utils
+	gcc $(CFLAGS) $(SRCS_BONUS) -o $(NAME)
