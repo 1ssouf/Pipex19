@@ -6,7 +6,7 @@
 /*   By: ialousse <ialousse@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 18:25:33 by ialousse          #+#    #+#             */
-/*   Updated: 2023/06/12 16:48:02 by ialousse         ###   ########.fr       */
+/*   Updated: 2023/06/21 17:36:37 by ialousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ char	*get_path(char *cmd, char **env)
 	char	*path_part;
 	char	*exec;
 
-	i = 0;
+	i = -1;
 	all_path = ft_split(get_env("PATH", env), ':');
 	save_cmd = ft_split(cmd, ' ');
-	while (all_path[i++])
+	while (all_path[++i])
 	{
 		path_part = ft_strjoin(all_path[i], "/");
 		exec = ft_strjoin(path_part, save_cmd[0]);
@@ -59,23 +59,16 @@ char	*get_path(char *cmd, char **env)
 		}
 		free(exec);
 	}
-	free(all_path);
-	free(save_cmd);
+	ft_free_tab(all_path);
+	ft_free_tab(save_cmd);
 	return (cmd);
 }
 
 void	ft_exit(int n)
 {
 	if (n == 1)
-	{
 		ft_putstr_fd("./pipex infile cmd1 cmd2 outfil\n", 2);
-		exit(0);
-	}
-	if (n == 0)
-	{
-		ft_putstr_fd("ERROR\n", 2);
-		exit(0);
-	}
+	exit(0);
 }
 
 void	ft_free_tab(char **tab)
@@ -95,11 +88,11 @@ int	open_file(char *file, int in_or_out)
 {
 	int	ret;
 
-	if (in_or_out == 1)
-		ret = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (in_or_out == 0)
 		ret = open(file, O_RDONLY, 0777);
+	if (in_or_out == 1)
+		ret = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (ret == -1)
-		exit(-1);
+		exit(0);
 	return (ret);
 }

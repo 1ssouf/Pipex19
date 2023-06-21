@@ -6,7 +6,7 @@
 /*   By: ialousse <ialousse@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 11:09:19 by ialousse          #+#    #+#             */
-/*   Updated: 2023/06/12 16:59:43 by ialousse         ###   ########.fr       */
+/*   Updated: 2023/06/20 14:38:53 by ialousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,15 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0' && i < n - 1)
 		i++;
 	return (s1[i] - s2[i]);
+}
+
+void	*ft_calloc(size_t elementCount, size_t elementSize)
+{
+	char	*res;
+
+	res = malloc(elementSize * elementCount);
+	if (!res)
+		return (NULL);
+	ft_bzero(res, elementSize * elementCount);
+	return (res);
 }

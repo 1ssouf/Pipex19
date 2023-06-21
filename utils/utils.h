@@ -6,7 +6,7 @@
 /*   By: ialousse <ialousse@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 16:50:16 by ialousse          #+#    #+#             */
-/*   Updated: 2023/06/13 20:08:28 by ialousse         ###   ########.fr       */
+/*   Updated: 2023/06/20 14:40:58 by ialousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@
 # include <sys/wait.h>
 # include <unistd.h>
 
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
-# endif
+# define BUFFER_SIZE 50
 
 /****************UTILS****************/
 void	ft_putstr_fd(char *s, int fd);
@@ -35,6 +32,8 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlen(const char *s);
 char	**ft_split(char const *s, char c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+void	*ft_calloc(size_t elementCount, size_t elementSize);
+void	ft_bzero(void *s, size_t n);
 
 /****************GNL*****************/
 char	*read_and_stash(int fd, char *stash);

@@ -6,7 +6,7 @@
 /*   By: ialousse <ialousse@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 17:17:39 by ialousse          #+#    #+#             */
-/*   Updated: 2023/06/14 20:27:22 by ialousse         ###   ########.fr       */
+/*   Updated: 2023/06/21 17:34:40 by ialousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	enfant(char **av, int pfd[2], char **env)
 	exec(av[2], env);
 }
 
-// pfd[0] correspondant à la lecture de la sortie du pipe 
-// et pfd[1] à l'écriture dans le pipe
+// pfd[0] lecture de la sortie du pipe 
+// et pfd[1] écriture dans le pipe
 // 0	Entrée standard		stdin
 // 1	Sortie standard		stdout
 
@@ -88,3 +88,20 @@ int	main(int ac, char **av, char **env)
 	else
 		ft_exit(0);
 }
+
+// int	main(int ac, char **av, char **env)
+// {
+// 	int		p_fd[2];
+// 	pid_t	pid;
+
+// 	if (ac != 5)
+// 		ft_exit(1);
+// 	if (pipe(p_fd) == -1)
+// 		exit(-1);
+// 	pid = fork();
+// 	if (pid == -1)
+// 		exit(-1);
+// 	if (!pid)
+// 		enfant(av, p_fd, env);
+// 	parant(av, p_fd, env);
+// }
